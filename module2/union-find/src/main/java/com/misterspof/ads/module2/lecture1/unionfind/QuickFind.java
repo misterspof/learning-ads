@@ -1,22 +1,30 @@
 package com.misterspof.ads.module2.lecture1.unionfind;
 
-import jdk.jshell.spi.ExecutionControl;
-
 public class QuickFind implements IUnionFindStrategy {
 
+    private UF uf;
 
     @Override
     public UF create(int N) {
-        return new UF(N);
+        uf = new UF(N);
+        return uf;
     }
 
     @Override
     public void union(int p, int q) throws RuntimeException {
-        throw new UnsupportedOperationException("The method is not implemented yet");
+        if(uf.getData()[p] == uf.getData()[q]) return;
+        int right = uf.getData()[q];
+        int left = uf.getData()[p];
+        int len = uf.getData().length;
+        for(int i = 0; i < len; i++){
+            if(uf.getData()[i] == left) {
+                uf.getData()[i] = right;
+            }
+        }
     }
 
     @Override
     public boolean connected(int p, int q) {
-        throw new UnsupportedOperationException("The method is not implemented yet");
+        return uf.getData()[p] == uf.getData()[q];
     }
 }

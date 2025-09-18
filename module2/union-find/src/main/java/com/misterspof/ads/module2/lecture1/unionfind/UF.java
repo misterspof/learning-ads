@@ -5,7 +5,11 @@ public class UF {
     private int [] data;
 
     public UF(int N){
+
         this.data = new int[N];
+        for(int i = 0; i < N; i++){
+            setData(i, i);
+        }
     }
 
     public int [] getData(){
@@ -16,5 +20,8 @@ public class UF {
         this.data = data;
     }
 
+    public void setData(int index, int val){
+        data[index] = val;
+    }
 
 }
